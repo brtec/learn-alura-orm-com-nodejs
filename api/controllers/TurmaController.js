@@ -24,6 +24,20 @@ class TurmaController {
     }
   }
 
+  static async restauraTurma(req, res) {
+    const { id } = req.params
+    try {
+      const umaTurma = await database.Turmas.restore( {
+        where: {
+          id: Number(id)
+        }
+      })
+      return res.status(200).json({message: `ID ${id} Restaurado com sucesso`})
+    } catch (error) {
+      return res.status(500).json(error.message)
+    }
+  }
+
   static async criaTurma(req, res) {
     const novaTurma = req.body
     try {
