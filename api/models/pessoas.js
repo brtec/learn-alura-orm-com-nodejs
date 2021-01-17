@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
     paranoid: true,
     defaultScope: {
       where: { ativo: true }
+    },
+    scopes: {
+      todos: { where: {} },
+      estudantes: { where: { role: 'estudante' } }
     }
   })
   Pessoas.associate = function(models) {
